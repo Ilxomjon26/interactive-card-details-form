@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="script.js"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Interactive card details form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <img src="./images/bg-main-desktop.png" alt="" class="div0">
+  <img src="./images/bg-card-front.png" alt="" class="img1">
+  <img src="./images/bg-card-back.png" alt="" class="img2">
+  <div class="card1">
+    <img src="./images/card-logo.svg" alt="" class="logo">
+    <div class="flex1">
+      <p class="p1 " id="p1">0000</p>
+      <p class="p1 p234" id="p2">0000</p>
+      <p class="p1 p234" id="p3">0000</p>
+      <p class="p1 p234" id="p4">0000</p>
+    </div>
+    <div class="card11">
+      <p class="p11" id="pp1">JANE APPLESEED</p>
+      <!-- <p class="p12">00/00</p> -->
+      <div class="flex1 koch">
+        <p class="p12" id="pp3">00</p>
+        <p class="p12 p122">/</p>
+        <p class="p12 p122" id="pp4">00</p>
+      </div>
+
+    </div>
+  </div>
+
+  
+  <p class="p00" id="pp5">000</p>
+  
+
+  <div class="inputs" id="inputs">
+    <div class="hide1">
+      <p class="p2">Cardholder Name</p>
+      <form action="">
+        <input placeholder="e.g. Jane Appleseed" type="text" class="input1 pad pad1" id="name">
+      </form>
+      <p class="qizil" id="perror1" style="color: red;" class=""></p>
+
+      <p class="p2 p3">Card Number</p>
+      <form action="">
+        <input placeholder="e.g. 1234 5678 9123 0000" type="number" class="input1 input2 pad pad2" id="name2">
+      </form>
+      <p class="qizil" id="perror2" style="color: red;"></p>
+
+      <div class="div4 div5">
+        <div class="">
+          <p class="p4">Exp. Date (MM/YY)</p>
+          <div class="div4">
+            <form action="">
+              <input placeholder="MM" type="number" class="input3 pad pad3" id="name3">
+              <p class="qizil" id="perror3" style="color: red;"></p>
+            </form>
+            <form action="">
+              <input placeholder="YY" type="number" class="input3 input4 pad pad4" id="name4">
+              <!-- <p class="qizil" id="perror4" style="color: red;"></p> -->
+            </form>
+          </div>
+        </div>
+    
+        <div class="div6">
+          <p class="p2">CVC</p>
+          <form action="">
+            <input placeholder="e.g. 123" type="number" class="input5 pad pad5" id="name5">
+          </form>
+          <p class="qizil" id="perror5" style="color: red;"></p>
+        </div>
+      </div>
+    </div>
+
+    <button class="button"><p class="con">Confirm</p></button>
+  </div>
+
+  <!-- Completed state start -->
+
+  <div class="kor">
+    <div class="aylana"><img src="./images/icon-complete.svg" alt="" class="togri"></div>
+    <p class="p21">THANK YOU!</p>
+    <p class="p22">We've added your card details</p>
+    <button class="button button1"><p class="con">Continue</p></button>
+    
+  </div>
+  <script>
+     $("#perror1").hide()
+     $("#perror2").hide()
+     $("#perror3").hide()
+     $("#perror4").hide()
+     $("#perror5").hide()
+    const name = document.getElementById("name")
+    const error1=document.getElementById("perror1")
+    const updatename=()=>{
+      if(name.value.length<1){
+        error1.innerHTML="Ism yozish shart!"; 
+        
+        $(".pad1").css('outline', '1px solid #FF5050')
+        $(".pad1").css('border', 'none')
+        $("#perror1").show()
+      }
+      else{
+        error1.innerHTML="";
+        $(".pad1").css('outline', '1px solid #6348FE')
+        $(".pad1").css('border', 'none')
+       
+      }
+      let val=name.value
+      document.getElementById("pp1").innerHTML=val;
+
+    }
+    name.addEventListener("input",updatename)
+    // if (name.value.length < 1){
+    //     document.getElementById("p-1-error").innerHTML = "Ism yozish shart!";
+    //   }
+    //   else {
+    //     document.getElementById("p-1-error").innerHTML = "";
+    //   }
+    
+    const name2 = document.getElementById("name2")
+    const error2=document.getElementById("perror2")
+    const p1=document.getElementById("p1")
+    const p2=document.getElementById("p2")
+    const p3=document.getElementById("p3")
+    const p4=document.getElementById("p4")
+    const updatename2=()=>{
+      if(name2.value.length<16 || name2.value.length>16  ){
+        error2.innerHTML="raqam formati xato!"; 
+        $(".pad2").css('outline', '1px solid #FF5050')
+        $(".pad2").css('border', 'none')
+      }
+      else{
+        error2.innerHTML="";
+        $(".pad2").css('outline', '1px solid #6348FE')
+        $(".pad2").css('border', 'none')
+        $("#perror2").show()
+      }
+      
+      let arr = []
+      for (let i = 0; i < 16; i + 4){
+        arr.push(name2.value.slice(i, i+=4))
+      }
+      p1.innerHTML=arr[0]
+      p2.innerHTML=arr[1]
+      p3.innerHTML=arr[2]
+      p4.innerHTML=arr[3]
+
+      
+
+    }
+    name2.addEventListener("input",updatename2)
+
+    const name3 = document.getElementById("name3")
+    const error3=document.getElementById("perror3")
+    const updatename3=()=>{
+      if( name3.value<1||name3.value>12 ){
+        error3.innerHTML="Can’t be blank!"; 
+        $(".pad3").css('outline', '1px solid #FF5050')
+        $(".pad3").css('border', 'none')
+      }
+      else{
+        error3.innerHTML="";
+        $(".pad3").css('outline', '1px solid #6348FE')
+        $(".pad3").css('border', 'none')
+        $("#perror3").show()
+      }
+      
+      let val=name3.value
+      document.getElementById("pp3").innerHTML=val;
+
+    }
+    name3.addEventListener("input",updatename3)
+
+    const name4 = document.getElementById("name4")
+    const error4=document.getElementById("perror3")
+    const updatename4=()=>{
+      if( name4.value<1||name4.value>99){
+        error4.innerHTML="Can’t be blank!";
+        $(".pad4").css('outline', '1px solid #FF5050')
+        $(".pad4").css('border', 'none') 
+      }
+      else{
+        error4.innerHTML="";
+        $(".pad4").css('outline', '1px solid #6348FE')
+        $(".pad4").css('border', 'none')
+        $("#perror4").show()
+      }
+      let val=name4.value
+      document.getElementById("pp4").innerHTML=val;
+
+    }
+    name4.addEventListener("input",updatename4)
+    
+    const name5 = document.getElementById("name5")
+    const error5=document.getElementById("perror5")
+    const updatename5=()=>{
+      if(name5.value.length<3 || name5.value.length>3){
+        error5.innerHTML="Can’t be blank!";
+        $(".pad5").css('outline', '1px solid #FF5050')
+        $(".pad5").css('border', 'none') 
+      }
+      else{
+        error5.innerHTML="";
+        $(".pad5").css('outline', '1px solid #6348FE')
+        $(".pad5").css('border', 'none')
+        $("#perror5").show()
+      }
+      let val=name5.value
+      document.getElementById("pp5").innerHTML=val;
+
+    }
+    name5.addEventListener("input",updatename5)
+  </script>
+ 
+</body>
+</html>
